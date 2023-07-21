@@ -1,0 +1,47 @@
+@import "global.less";
+
+:host {
+  background: linear-gradient(45deg, @primary-color, @secondary-color 50%, @tertiary-color);
+  animation: gradientAnimation 20s linear infinite;
+  background-size: 200% 200%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  height: 100%;
+}
+
+mat-card {
+  gap: 15px;
+  width: 100%;
+  max-width: 400px;
+}
+
+mat-card,
+mat-card-header {
+  display: flex;
+  flex-direction: column;
+}
+
+mat-card-header {
+  flex-direction: column-reverse;
+  align-self: center;
+  gap: 15px;
+
+  img {
+    height: 40px;
+    width: 40px;
+    margin: 0 auto;
+  }
+}
+
+mat-card-content {
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  button {
+    width: 100%;
+  }
+}
