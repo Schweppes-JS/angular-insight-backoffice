@@ -1,7 +1,9 @@
+import { FormBuilder, Validators } from "@angular/forms";
+import { ApolloError } from "@apollo/client/core";
 import { Component } from "@angular/core";
-import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Router } from "@angular/router";
-import { FormControl, FormGroup } from "@angular/forms";
+
+import { LoginService } from "./login.service";
 
 @Component({
   selector: "app-login",
@@ -10,33 +12,34 @@ import { FormControl, FormGroup } from "@angular/forms";
 })
 export class LoginComponent {
   constructor(
-    private readonly http: HttpClient,
+    private loginService: LoginService,
+    private readonly fb: FormBuilder,
     private readonly router: Router
   ) {}
+  isSubmitted = false;
   loginError = "";
   hide = true;
 
-  loginForm = new FormGroup({
-    email: new FormControl(null),
-    password: new FormControl(null),
+  loginForm = this.fb.group({
+    email: [null, [Validators.required, Validators.email]],
+    password: [null, Validators.required],
   });
 
   submitLogin() {
+    this.isSubmitted = true;
     if (this.loginForm.valid) {
-      // this.loadingHendler.start();
-      this.http.post(`/auth/login`, { ...this.loginForm.value }).subscribe(
-        () => {
-          // this.loadingHendler.finish();
-          this.loginError = "";
-          this.router.navigate(["/chat"]);
-        },
-        ({ error }: HttpErrorResponse) => {
-          // this.loadingHendler.finish();
-          this.loginError = error.message ?? error.errors?.[0].msg;
-          console.error(this.loginError ?? "something went wrong");
-        }
-      );
+      const formValue = this.loginForm.value;
+      if (formValue.email && formValue.password) {
+        this.loginService.getToken({ email: formValue.email, password: formValue.password }).subscribe({
+          next: (response) => response.data && this.loginService.setToken(response.data.login.token),
+          error: (error: ApolloError) => (this.loginError = error.message),
+        });
+      } else this.loginError = "Please fill all fields";
     }
+  }
+
+  fieldsChanged() {
+    if (this.isSubmitted && this.loginError) this.loginError = "";
   }
 
   get email() {
