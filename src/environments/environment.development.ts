@@ -1,3 +1,3 @@
 export const environment = {
-  GRAPHQL_URL: "http://localhost:3000/graphql",
+  GRAPHQL_URL: import.meta.env["NG_APP_GRAPHQL_URL"],
 };
