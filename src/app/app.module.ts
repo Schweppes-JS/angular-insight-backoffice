@@ -8,11 +8,20 @@ import { AppComponent } from "./app.component";
 import { MaterialModule } from "./material/material.module";
 import { GraphQLModule } from "./graphql.module";
 import { LoginModule } from "./login/login.module";
-import { StoreModule } from '@ngrx/store';
+import { StoreModule } from "@ngrx/store";
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, AppRoutingModule, MaterialModule, BrowserAnimationsModule, HttpClientModule, GraphQLModule, LoginModule, StoreModule.forRoot({}, {})],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    MaterialModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
+    GraphQLModule,
+    LoginModule,
+    StoreModule.forRoot({}, {}),
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
