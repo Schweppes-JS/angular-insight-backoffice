@@ -1,3 +1,3 @@
 export const environment = {
-  GRAPHQL_URL: "https://insight-backend-production.up.railway.app/graphql",
+  GRAPHQL_URL: import.meta.env["NG_APP_GRAPHQL_URL"],
 };
