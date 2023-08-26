@@ -1,3 +1,4 @@
+/* eslint-disable */
 interface ImportMeta {
   readonly env: ImportMetaEnv;
 }

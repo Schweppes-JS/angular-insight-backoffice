@@ -9,6 +9,7 @@ import { LoginService } from "./login.service";
   selector: "app-login",
   templateUrl: "./login.component.html",
   styleUrls: ["./login.component.less"],
+  providers: [LoginService],
 })
 export class LoginComponent {
   constructor(
