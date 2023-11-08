@@ -18,6 +18,7 @@ export class LoginComponent {
     private readonly router: Router
   ) {}
   isSubmitted = false;
+  isLoading = false;
   loginError = "";
   hide = true;
 
@@ -29,13 +30,24 @@ export class LoginComponent {
   submitLogin() {
     this.isSubmitted = true;
     if (this.loginForm.valid) {
+      this.isLoading = true;
       const formValue = this.loginForm.value;
       if (formValue.email && formValue.password) {
         this.loginService.getToken({ email: formValue.email, password: formValue.password }).subscribe({
-          next: (response) => response.data && this.loginService.setToken(response.data.login.token),
-          error: (error: ApolloError) => (this.loginError = error.message),
+          next: (response) => {
+            response.data && this.loginService.setToken(response.data.login.token);
+            this.isLoading = false;
+            this.router.navigate(["/"]);
+          },
+          error: (error: ApolloError) => {
+            this.loginError = error.message;
+            this.isLoading = false;
+          },
         });
-      } else this.loginError = "Please fill all fields";
+      } else {
+        this.loginError = "Please fill all fields";
+        this.isLoading = false;
+      }
     }
   }
 
