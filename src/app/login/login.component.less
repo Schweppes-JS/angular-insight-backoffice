@@ -10,38 +10,52 @@
   height: 100%;
 }
 
-.wrapper {
-  gap: 15px;
-  width: 100%;
-  max-width: 400px;
-}
+.login {
+  &__wrapper {
+    gap: 15px;
+    width: 100%;
+    max-width: 400px;
+  }
 
-.wrapper,
-.header {
-  display: flex;
-  flex-direction: column;
-}
+  &__wrapper,
+  &__header {
+    display: flex;
+    flex-direction: column;
+  }
 
-.header {
-  flex-direction: column-reverse;
-  align-self: center;
-  gap: 15px;
+  &__header {
+    flex-direction: column-reverse;
+    align-self: center;
+    gap: 15px;
+  }
 
-  img {
+  &__img {
     height: 40px;
     width: 40px;
     margin: 0 auto;
   }
-}
 
-.container {
-  form {
+  &__form {
     display: flex;
     flex-direction: column;
     gap: 5px;
   }
 
-  button {
+  &__button {
     width: 100%;
+  }
+
+  &__box {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  &__icon {
+    position: absolute;
+    right: -24px;
+    height: 20px;
+    width: 20px;
+    margin: 0;
   }
 }
