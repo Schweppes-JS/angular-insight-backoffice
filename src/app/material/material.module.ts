@@ -4,8 +4,10 @@ import { MatCardModule } from "@angular/material/card";
 import { MatTabsModule } from "@angular/material/tabs";
 import { MatInputModule } from "@angular/material/input";
 import { MatButtonModule } from "@angular/material/button";
-import { MatSnackBarModule } from "@angular/material/snack-bar";
+import { MatSidenavModule } from "@angular/material/sidenav";
+import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatCheckboxModule } from "@angular/material/checkbox";
+import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 
@@ -14,6 +16,8 @@ const MaterialComponents = [
   MatFormFieldModule,
   MatSnackBarModule,
   MatCheckboxModule,
+  MatSidenavModule,
+  MatToolbarModule,
   MatButtonModule,
   MatInputModule,
   MatCardModule,

@@ -4,16 +4,18 @@ import { Component } from "@angular/core";
 import { Router } from "@angular/router";
 
 import { LoginService } from "./login.service";
+import { UserService } from "../user/user.service";
 
 @Component({
   selector: "app-login",
   templateUrl: "./login.component.html",
   styleUrls: ["./login.component.less"],
-  providers: [LoginService],
+  providers: [LoginService, UserService],
 })
 export class LoginComponent {
   constructor(
-    private loginService: LoginService,
+    private readonly userService: UserService,
+    private readonly loginService: LoginService,
     private readonly fb: FormBuilder,
     private readonly router: Router
   ) {}
@@ -27,6 +29,11 @@ export class LoginComponent {
     password: [null, Validators.required],
   });
 
+  onError(message: string) {
+    this.loginError = message;
+    this.isLoading = false;
+  }
+
   submitLogin() {
     this.isSubmitted = true;
     if (this.loginForm.valid) {
@@ -36,18 +43,17 @@ export class LoginComponent {
         this.loginService.getToken({ email: formValue.email, password: formValue.password }).subscribe({
           next: (response) => {
             response.data && this.loginService.setToken(response.data.login.token);
-            this.isLoading = false;
-            this.router.navigate(["/"]);
+            this.userService.getMe().subscribe({
+              next: () => {
+                this.isLoading = false;
+                this.router.navigate(["/"], { replaceUrl: true });
+              },
+              error: (error: ApolloError) => this.onError(error.message),
+            });
           },
-          error: (error: ApolloError) => {
-            this.loginError = error.message;
-            this.isLoading = false;
-          },
+          error: (error: ApolloError) => this.onError(error.message),
         });
-      } else {
-        this.loginError = "Please fill all fields";
-        this.isLoading = false;
-      }
+      } else this.onError("Please fill all fields");
     }
   }
 

@@ -1,1 +1,2 @@
-<router-outlet></router-outlet>
+<mat-progress-spinner class="app__spinner" *ngIf="!isAppLoaded" color="accent" mode="indeterminate" diameter="40"></mat-progress-spinner>
+<router-outlet *ngIf="isAppLoaded"></router-outlet>

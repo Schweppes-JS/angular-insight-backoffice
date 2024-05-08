@@ -1,4 +1,14 @@
 :host {
-  display: block;
   height: 100%;
+  display: block;
+
+  &:has(.app__spinner) {
+    display: flex;
+  }
+}
+
+.app {
+  &__spinner {
+    margin: auto;
+  }
 }
