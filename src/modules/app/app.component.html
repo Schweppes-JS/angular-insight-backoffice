@@ -1,0 +1,8 @@
+<mat-progress-spinner
+  class="app__spinner"
+  *ngIf="(appService.isAppLoaded$ | async) === false"
+  color="accent"
+  mode="indeterminate"
+  diameter="40"
+></mat-progress-spinner>
+<router-outlet *ngIf="appService.isAppLoaded$ | async"></router-outlet>

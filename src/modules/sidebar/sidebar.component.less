@@ -1,0 +1,31 @@
+@import "global.less";
+
+:host {
+  flex: 1;
+}
+
+.sidebar {
+  &__wrapper {
+    height: 100%;
+  }
+
+  &__container {
+    padding: 15px;
+  }
+
+  &__navigation {
+    padding: 0;
+  }
+
+  &__navigation-item {
+    &--active {
+      background-color: fade(@tertiary-color, 15%);
+
+      ::ng-deep {
+        span {
+          color: @tertiary-color;
+        }
+      }
+    }
+  }
+}
