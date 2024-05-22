@@ -1,3 +1,4 @@
+import { gql } from "apollo-angular";
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
@@ -19,6 +20,10 @@ export type ContentBlock = {
   en?: Maybe<Scalars["String"]["output"]>;
   id: Scalars["ID"]["output"];
   uk?: Maybe<Scalars["String"]["output"]>;
+};
+
+export type ContentBlockInput = {
+  id: Scalars["ID"]["input"];
 };
 
 export type CreateContentBlockInput = {
@@ -45,12 +50,20 @@ export type CreateUserInput = {
   password: Scalars["String"]["input"];
 };
 
+export type DeletePublicPageInput = {
+  id: Scalars["ID"]["input"];
+};
+
 export type InfoSection = {
   __typename?: "InfoSection";
   contentBlockIds: Array<Scalars["ID"]["output"]>;
   id: Scalars["ID"]["output"];
   name: Scalars["String"]["output"];
   variation: Scalars["String"]["output"];
+};
+
+export type InfoSectionInput = {
+  id: Scalars["ID"]["input"];
 };
 
 export type LoginUserInput = {
@@ -64,6 +77,7 @@ export type Mutation = {
   createInfoSection: InfoSection;
   createPublicPage: PublicPage;
   createUser: User;
+  deletePublicPage: PublicPage;
   login: UserWithToken;
 };
 
@@ -83,6 +97,10 @@ export type MutationCreateUserArgs = {
   createUserInput: CreateUserInput;
 };
 
+export type MutationDeletePublicPageArgs = {
+  deletePublicPageInput: DeletePublicPageInput;
+};
+
 export type MutationLoginArgs = {
   loginUserInput: LoginUserInput;
 };
@@ -93,6 +111,10 @@ export type PublicPage = {
   infoSectionIds: Array<Scalars["ID"]["output"]>;
   name: Scalars["String"]["output"];
   route: Scalars["String"]["output"];
+};
+
+export type PublicPageInput = {
+  id: Scalars["ID"]["input"];
 };
 
 export type Query = {
@@ -109,19 +131,19 @@ export type Query = {
 };
 
 export type QueryContentBlockArgs = {
-  id: Scalars["ID"]["input"];
+  contentBlockInput?: InputMaybe<ContentBlockInput>;
 };
 
 export type QueryInfoSectionArgs = {
-  id: Scalars["ID"]["input"];
+  infoSectionInput?: InputMaybe<InfoSectionInput>;
 };
 
 export type QueryPublicPageArgs = {
-  id: Scalars["ID"]["input"];
+  publicPageInput?: InputMaybe<PublicPageInput>;
 };
 
 export type QueryUserArgs = {
-  id: Scalars["ID"]["input"];
+  userInput?: InputMaybe<UserInput>;
 };
 
 export type User = {
@@ -131,6 +153,10 @@ export type User = {
   id: Scalars["ID"]["output"];
   lastName: Scalars["String"]["output"];
   password: Scalars["String"]["output"];
+};
+
+export type UserInput = {
+  id: Scalars["ID"]["input"];
 };
 
 export type UserWithToken = {
