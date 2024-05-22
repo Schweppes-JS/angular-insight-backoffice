@@ -1,4 +1,4 @@
-@import "global.less";
+@import "global.scss";
 
 :host {
   flex: 1;
@@ -9,21 +9,17 @@
     height: 100%;
   }
 
-  &__container {
-    padding: 15px;
-  }
-
   &__navigation {
     padding: 0;
   }
 
   &__navigation-item {
     &--active {
-      background-color: fade(@tertiary-color, 15%);
+      background-color: rgba(map-get($my-accent, 200), 15%);
 
       ::ng-deep {
         span {
-          color: @tertiary-color;
+          color: map-get($my-accent, 200);
         }
       }
     }

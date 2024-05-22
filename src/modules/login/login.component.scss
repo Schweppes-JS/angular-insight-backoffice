@@ -1,7 +1,7 @@
-@import "global.less";
+@import "global.scss";
 
 :host {
-  background: linear-gradient(45deg, @primary-color, @secondary-color 50%, @tertiary-color);
+  background: linear-gradient(45deg, $brand-primary-color, $brand-secondary-color 50%, $brand-tertiary-color);
   animation: gradientAnimation 20s linear infinite;
   background-size: 200% 200%;
   justify-content: center;

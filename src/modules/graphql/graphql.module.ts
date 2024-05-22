@@ -25,7 +25,6 @@ import { environment } from "src/environments/environment";
             });
           }
         });
-
         return { link: ApolloLink.from([errorLink, httpLink.create({ uri: environment.GRAPHQL_URL })]), cache: new InMemoryCache() };
       },
       deps: [HttpLink, Router],

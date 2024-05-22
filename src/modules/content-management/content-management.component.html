@@ -1,1 +1,41 @@
-Content Management
+<mat-tab-group
+  class="content-management__wrapper"
+  *ngIf="isLoaded && !hasError && publicPages.length > 0"
+  animationDuration="0"
+  mat-stretch-tabs="false"
+  mat-align-tabs="start"
+  color="accent"
+>
+  <mat-tab *ngFor="let page of publicPages" [label]="page.name | titlecase">
+    <section class="content-management__container">
+      <div class="content-management__headline">
+        <h3 class="content-management__heading">
+          <span class="content-management__title">{{ page.name | titlecase }}</span>
+          <span class="content-management__subtitle">({{ page.route ? page.route : "/" }})</span>
+        </h3>
+        <button mat-icon-button color="warn">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    </section>
+  </mat-tab>
+  <mat-tab disabled>
+    <ng-template mat-tab-label>
+      <button mat-icon-button color="accent">
+        <mat-icon>add</mat-icon>
+      </button>
+    </ng-template>
+  </mat-tab>
+</mat-tab-group>
+
+<mat-progress-spinner class="content-management__spinner" *ngIf="isLoaded === false" color="accent" mode="indeterminate" diameter="40" />
+
+<div class="content-management__message" *ngIf="isLoaded && publicPages.length === 0">
+  <h2>There are no public pages</h2>
+  <button mat-stroked-button>Create<mat-icon>add</mat-icon></button>
+</div>
+
+<div class="content-management__container content-management__message" *ngIf="hasError">
+  <h2>Something went wrong</h2>
+  <p>Please contact to support</p>
+</div>
