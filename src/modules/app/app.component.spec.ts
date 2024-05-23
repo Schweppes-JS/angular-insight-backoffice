@@ -1,7 +1,7 @@
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { RouterTestingModule } from "@angular/router/testing";
 import { BrowserModule } from "@angular/platform-browser";
-import { HttpClientModule } from "@angular/common/http";
+import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
 import { LayoutModule } from "@angular/cdk/layout";
 import { TestBed } from "@angular/core/testing";
 import { ApolloModule } from "apollo-angular";
@@ -20,10 +20,9 @@ import { AppService } from "./app.service";
 describe("AppComponent", () => {
   beforeEach(() =>
     TestBed.configureTestingModule({
-      imports: [
-        BrowserAnimationsModule,
+    declarations: [AppComponent],
+    imports: [BrowserAnimationsModule,
         RouterTestingModule,
-        HttpClientModule,
         NotFoundModule,
         MaterialModule,
         BrowserModule,
@@ -33,11 +32,9 @@ describe("AppComponent", () => {
         LayoutModule,
         LoginModule,
         UserModule,
-        AuthModule,
-      ],
-      declarations: [AppComponent],
-      providers: [AppService, UserService],
-    })
+        AuthModule],
+    providers: [AppService, UserService, provideHttpClient(withInterceptorsFromDi())]
+})
   );
 
   it("should create the app", () => {

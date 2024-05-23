@@ -1,6 +1,6 @@
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { BrowserModule } from "@angular/platform-browser";
-import { HttpClientModule } from "@angular/common/http";
+import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
 import { ApolloModule } from "apollo-angular";
 import { StoreModule } from "@ngrx/store";
 import { NgModule } from "@angular/core";
@@ -20,26 +20,19 @@ import { AppComponent } from "./app.component";
 
 import { AppService } from "./app.service";
 
-@NgModule({
-  declarations: [AppComponent],
-  imports: [
-    StoreModule.forRoot({}, {}),
-    BrowserAnimationsModule,
-    ContentManagementModule,
-    HttpClientModule,
-    NotFoundModule,
-    MaterialModule,
-    BrowserModule,
-    GraphQLModule,
-    RoutingModule,
-    ApolloModule,
-    LayoutModule,
-    LoginModule,
-    ModalModule,
-    UserModule,
-    AuthModule,
-  ],
-  bootstrap: [AppComponent],
-  providers: [AppService, UserService],
-})
+@NgModule({ declarations: [AppComponent],
+    bootstrap: [AppComponent], imports: [StoreModule.forRoot({}, {}),
+        BrowserAnimationsModule,
+        ContentManagementModule,
+        NotFoundModule,
+        MaterialModule,
+        BrowserModule,
+        GraphQLModule,
+        RoutingModule,
+        ApolloModule,
+        LayoutModule,
+        LoginModule,
+        ModalModule,
+        UserModule,
+        AuthModule], providers: [AppService, UserService, provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule {}
