@@ -1,0 +1,11 @@
+<div (click)="openModal(modalContent, modalActions)" (keydown.enter)="openModal(modalContent, modalActions)" tabindex="0" role="button">
+  <ng-content select="[opener]"></ng-content>
+</div>
+
+<ng-template #modalContent>
+  <ng-content select="[content]" />
+</ng-template>
+
+<ng-template #modalActions>
+  <ng-content select="[actions]" />
+</ng-template>

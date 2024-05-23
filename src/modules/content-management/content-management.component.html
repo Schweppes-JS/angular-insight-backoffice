@@ -13,9 +13,13 @@
           <span class="content-management__title">{{ page.name | titlecase }}</span>
           <span class="content-management__subtitle">({{ page.route ? page.route : "/" }})</span>
         </h3>
-        <button mat-icon-button color="warn">
-          <mat-icon>delete</mat-icon>
-        </button>
+        <app-modal>
+          <button mat-icon-button color="warn" opener>
+            <mat-icon>delete</mat-icon>
+          </button>
+          <div content>THERE IS</div>
+          <!-- <div actions>HERE IS</div> -->
+        </app-modal>
       </div>
     </section>
   </mat-tab>

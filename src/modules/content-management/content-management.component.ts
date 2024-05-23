@@ -33,7 +33,6 @@ export class ContentManagementComponent implements OnInit {
       )
       .subscribe({
         next: (response) => {
-          console.log(response);
           this.publicPages = response?.data.publicPages ?? [];
           this.isLoaded = true;
         },

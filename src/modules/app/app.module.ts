@@ -12,6 +12,7 @@ import { RoutingModule } from "../routing/routing.module";
 import { GraphQLModule } from "../graphql/graphql.module";
 import { LayoutModule } from "../layout/layout.module";
 import { LoginModule } from "../login/login.module";
+import { ModalModule } from "../modal/modal.module";
 import { UserService } from "../user/user.service";
 import { AuthModule } from "../auth/auth.module";
 import { UserModule } from "../user/user.module";
@@ -34,6 +35,7 @@ import { AppService } from "./app.service";
     ApolloModule,
     LayoutModule,
     LoginModule,
+    ModalModule,
     UserModule,
     AuthModule,
   ],

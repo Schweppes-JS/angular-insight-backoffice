@@ -6,6 +6,7 @@ import { MatTabsModule } from "@angular/material/tabs";
 import { MatListModule } from "@angular/material/list";
 import { MatInputModule } from "@angular/material/input";
 import { MatButtonModule } from "@angular/material/button";
+import { MatDialogModule } from "@angular/material/dialog";
 import { MatSidenavModule } from "@angular/material/sidenav";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatCheckboxModule } from "@angular/material/checkbox";
@@ -21,6 +22,7 @@ const MaterialComponents = [
   MatCheckboxModule,
   MatSidenavModule,
   MatToolbarModule,
+  MatDialogModule,
   MatButtonModule,
   MatInputModule,
   MatMenuModule,
