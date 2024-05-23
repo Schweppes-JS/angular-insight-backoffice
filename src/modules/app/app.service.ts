@@ -1,7 +1,9 @@
 import { Router } from "@angular/router";
 import { Injectable } from "@angular/core";
+import { ApolloError } from "@apollo/client/errors";
 import { BehaviorSubject, Observable, catchError, delay, of, take } from "rxjs";
 
+import { AuthService } from "../auth/auth.service";
 import { UserService } from "../user/user.service";
 import { AuthGuardService } from "../auth/auth-guard.service";
 import { LoginGuardService } from "../login/login-guard.service";
@@ -10,6 +12,7 @@ import { AUTH_TOKEN_STORAGE_KEY } from "../../constants/localStorageKeys";
 @Injectable()
 export class AppService {
   constructor(
+    private readonly authService: AuthService,
     private readonly userService: UserService,
     private readonly router: Router
   ) {}
@@ -29,7 +32,7 @@ export class AppService {
         .pipe(
           take(1),
           delay(500),
-          catchError((error) => of(error).pipe(delay(500)))
+          catchError((error: ApolloError) => of(error).pipe(delay(500)))
         )
         .subscribe({
           next: () => {
@@ -39,7 +42,7 @@ export class AppService {
           },
           error: () => {
             this.isAppLoadedSubject.next(true);
-            loginGuardService.canActivate();
+            this.authService.logout();
           },
         });
     } else this.isAppLoadedSubject.next(true);

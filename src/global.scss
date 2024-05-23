@@ -1,0 +1,42 @@
+@use "@angular/material" as mat;
+
+$brand-primary-color: rgba(177, 94, 138, 1);
+$brand-secondary-color: rgba(186, 103, 113, 1);
+$brand-tertiary-color: rgba(228, 155, 100, 1);
+
+$my-primary: mat.m2-define-palette(mat.$m2-purple-palette, 200);
+$my-accent: mat.m2-define-palette(mat.$m2-green-palette, 200);
+$my-warn: mat.m2-define-palette(mat.$m2-red-palette, 200);
+
+$my-theme: mat.m2-define-dark-theme(
+  (
+    color: (
+      primary: $my-primary,
+      accent: $my-accent,
+      warn: $my-warn,
+    ),
+  )
+);
+
+@include mat.all-component-themes($my-theme);
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 0%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
