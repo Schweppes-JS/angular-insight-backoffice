@@ -1,3 +1,5 @@
+@import "global.scss";
+
 :host {
   height: 100%;
   display: flex;
@@ -10,6 +12,7 @@
 
     ::ng-deep {
       .mdc-tab:last-child {
+        opacity: 1;
         padding: 0;
         min-width: min-content;
         cursor: pointer;
@@ -61,10 +64,4 @@
     font-size: 12px;
     margin-bottom: 6px;
   }
-
-  // &__remover {
-  //   position: absolute;
-  //   right: 5px;
-  //   top: 0px;
-  // }
 }
