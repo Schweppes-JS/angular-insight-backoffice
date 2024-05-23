@@ -39,7 +39,7 @@ export class ContentManagementComponent implements OnInit {
       });
   }
 
-  deletePage() {
-    console.log("soft delete");
+  deletePage(id: string) {
+    return () => this.contentManagementService.deletePublicPages(id).subscribe();
   }
 }

@@ -17,7 +17,7 @@ export class ModalComponent {
   @Input() confirmButtonColor = "";
   @Input() cancelButtonColor = "";
   @Input() openerIconTooltip = "";
-  @Input() onConfirm?: () => void;
+  @Input() onConfirm?: () => Any;
   @Input() onCancel?: () => void;
   @Input() openerIconColor = "";
   @Input() confirmButton = "";
