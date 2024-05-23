@@ -20,8 +20,9 @@ import { AppService } from "./app.service";
 describe("AppComponent", () => {
   beforeEach(() =>
     TestBed.configureTestingModule({
-    declarations: [AppComponent],
-    imports: [BrowserAnimationsModule,
+      declarations: [AppComponent],
+      imports: [
+        BrowserAnimationsModule,
         RouterTestingModule,
         NotFoundModule,
         MaterialModule,
@@ -32,9 +33,10 @@ describe("AppComponent", () => {
         LayoutModule,
         LoginModule,
         UserModule,
-        AuthModule],
-    providers: [AppService, UserService, provideHttpClient(withInterceptorsFromDi())]
-})
+        AuthModule,
+      ],
+      providers: [AppService, UserService, provideHttpClient(withInterceptorsFromDi())],
+    })
   );
 
   it("should create the app", () => {

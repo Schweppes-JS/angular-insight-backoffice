@@ -20,19 +20,25 @@ import { AppComponent } from "./app.component";
 
 import { AppService } from "./app.service";
 
-@NgModule({ declarations: [AppComponent],
-    bootstrap: [AppComponent], imports: [StoreModule.forRoot({}, {}),
-        BrowserAnimationsModule,
-        ContentManagementModule,
-        NotFoundModule,
-        MaterialModule,
-        BrowserModule,
-        GraphQLModule,
-        RoutingModule,
-        ApolloModule,
-        LayoutModule,
-        LoginModule,
-        ModalModule,
-        UserModule,
-        AuthModule], providers: [AppService, UserService, provideHttpClient(withInterceptorsFromDi())] })
+@NgModule({
+  declarations: [AppComponent],
+  bootstrap: [AppComponent],
+  imports: [
+    StoreModule.forRoot({}, {}),
+    BrowserAnimationsModule,
+    ContentManagementModule,
+    NotFoundModule,
+    MaterialModule,
+    BrowserModule,
+    GraphQLModule,
+    RoutingModule,
+    ApolloModule,
+    LayoutModule,
+    LoginModule,
+    ModalModule,
+    UserModule,
+    AuthModule,
+  ],
+  providers: [AppService, UserService, provideHttpClient(withInterceptorsFromDi())],
+})
 export class AppModule {}
