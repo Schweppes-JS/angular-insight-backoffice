@@ -5,6 +5,11 @@ import { MaterialModule } from "../material/material.module";
 
 import { ContentManagementComponent } from "./content-management.component";
 import { ContentManagementService } from "./content-management.service";
+import { ModalModule } from "../modal/modal.module";
 
-@NgModule({ imports: [CommonModule, MaterialModule], providers: [ContentManagementService], declarations: [ContentManagementComponent] })
+@NgModule({
+  imports: [CommonModule, MaterialModule, ModalModule],
+  declarations: [ContentManagementComponent],
+  providers: [ContentManagementService],
+})
 export class ContentManagementModule {}

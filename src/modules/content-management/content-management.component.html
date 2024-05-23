@@ -13,9 +13,16 @@
           <span class="content-management__title">{{ page.name | titlecase }}</span>
           <span class="content-management__subtitle">({{ page.route ? page.route : "/" }})</span>
         </h3>
-        <button mat-icon-button color="warn">
-          <mat-icon>delete</mat-icon>
-        </button>
+        <app-modal
+          contentTitle="Are you sure you want to delete {{ page.name | titlecase }} page?"
+          openerIconTooltip="Delete {{ page.name | titlecase }} page"
+          [onConfirm]="deletePage(page.id)"
+          confirmButtonColor="warn"
+          confirmButton="Delete"
+          openerIconColor="warn"
+          cancelButton="Cencel"
+          openerIcon="delete"
+        />
       </div>
     </section>
   </mat-tab>
@@ -30,7 +37,7 @@
 
 <mat-progress-spinner class="content-management__spinner" *ngIf="isLoaded === false" color="accent" mode="indeterminate" diameter="40" />
 
-<div class="content-management__message" *ngIf="isLoaded && publicPages.length === 0">
+<div class="content-management__message" *ngIf="isLoaded && publicPages.length === 0 && !hasError">
   <h2>There are no public pages</h2>
   <button mat-stroked-button>Create<mat-icon>add</mat-icon></button>
 </div>
