@@ -38,4 +38,8 @@ export class ContentManagementComponent implements OnInit {
         },
       });
   }
+
+  deletePage() {
+    console.log("soft delete");
+  }
 }

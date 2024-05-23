@@ -1,11 +1,22 @@
 <div (click)="openModal(modalContent, modalActions)" (keydown.enter)="openModal(modalContent, modalActions)" tabindex="0" role="button">
-  <ng-content select="[opener]"></ng-content>
+  <ng-content select="[opener]">
+    <button mat-icon-button [matTooltip]="openerIconTooltip || 'Accept'" [color]="openerIconColor">
+      <mat-icon [ngClass]="{ modal__icon: !openerIcon }">{{ openerIcon || "open_in_new" }}</mat-icon>
+    </button>
+  </ng-content>
 </div>
 
 <ng-template #modalContent>
-  <ng-content select="[content]" />
+  <ng-content select="[content]">
+    <h2>{{ contentTitle || "Are you sure?" }}</h2>
+  </ng-content>
 </ng-template>
 
 <ng-template #modalActions>
-  <ng-content select="[actions]" />
+  <ng-content select="[actions]">
+    <button mat-button mat-dialog-close cdkFocusInitial [color]="cancelButtonColor" (click)="onCancel?.()">
+      {{ cancelButton || "No" }}
+    </button>
+    <button mat-button mat-dialog-close [color]="confirmButtonColor" (click)="onConfirm?.()">{{ confirmButton || "Yes" }}</button>
+  </ng-content>
 </ng-template>

@@ -13,13 +13,16 @@
           <span class="content-management__title">{{ page.name | titlecase }}</span>
           <span class="content-management__subtitle">({{ page.route ? page.route : "/" }})</span>
         </h3>
-        <app-modal>
-          <button mat-icon-button color="warn" opener>
-            <mat-icon>delete</mat-icon>
-          </button>
-          <div content>THERE IS</div>
-          <!-- <div actions>HERE IS</div> -->
-        </app-modal>
+        <app-modal
+          contentTitle="Are you sure you want to delete {{ page.name | titlecase }} page?"
+          openerIconTooltip="Delete {{ page.name | titlecase }} page"
+          confirmButtonColor="warn"
+          [onConfirm]="deletePage"
+          confirmButton="Delete"
+          openerIconColor="warn"
+          cancelButton="Cencel"
+          openerIcon="delete"
+        />
       </div>
     </section>
   </mat-tab>

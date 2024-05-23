@@ -7,6 +7,7 @@ import { Any } from "src/types/any";
 
 @Component({
   imports: [MaterialModule, CommonModule],
+  styleUrls: ["./dialog.component.scss"],
   templateUrl: "./dialog.component.html",
   selector: "app-modal",
   standalone: true,
