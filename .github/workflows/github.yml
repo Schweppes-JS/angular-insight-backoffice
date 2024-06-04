@@ -3,11 +3,13 @@ name: Deploy Insight Backoffice
 on:
   push:
     branches:
+      - dev
       - main
 
 jobs:
-  deploy:
+  deploy-dev:
     runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/dev'
 
     steps:
       - name: Checkout code
@@ -18,7 +20,35 @@ jobs:
           npm ci
           npm run build
 
-      - name: Deploy to server
+      - name: Deploy to server (development)
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            cd ~/dev/angular-insight-backoffice
+            git stash
+            git checkout dev
+            git pull
+            npm install
+            npm run build:dev
+            cp -rf ./dist/. /usr/share/nginx/html/dev/backoffice
+
+  deploy-main:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build App
+        run: |
+          npm ci
+          npm run build
+
+      - name: Deploy to server (production)
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.VPS_HOST }}
@@ -26,6 +56,8 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             cd ~/angular-insight-backoffice
+            git stash
+            git checkout main
             git pull
             npm install
             npm run build:prod
