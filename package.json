@@ -3,10 +3,12 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start:local": "ng serve --configuration local",
+    "start:local": "ng serve --configuration local --port 57444",
     "start:dev": "ng serve --configuration development --port 54388",
+    "start:staging": "ng serve --configuration staging --port 60103",
     "build": "ng build --configuration production --output-path=dist",
     "build:dev": "ng build --configuration development --output-path=dist --base-href /dev/backoffice/",
+    "build:staging": "ng build --configuration staging --output-path=dist --base-href /staging/backoffice/",
     "build:prod": "ng build --configuration production --output-path=dist --base-href /backoffice/",
     "watch": "ng build --watch --configuration development",
     "serve": "http-server dist/ -p 4200",
