@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - dev
+      - staging
       - main
 
 jobs:
@@ -18,7 +19,7 @@ jobs:
       - name: Build App
         run: |
           npm ci
-          npm run build
+          npm run build:dev
 
       - name: Deploy to server (development)
         uses: appleboy/ssh-action@v1.0.3
@@ -35,6 +36,34 @@ jobs:
             npm run build:dev
             cp -rf ./dist/. /usr/share/nginx/html/dev/backoffice
 
+  deploy-staging:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/staging'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build App
+        run: |
+          npm ci
+          npm run build:staging
+
+      - name: Deploy to server (staging)
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            cd ~/staging/angular-insight-backoffice
+            git stash
+            git checkout staging
+            git pull
+            npm install
+            npm run build:staging
+            cp -rf ./dist/. /usr/share/nginx/html/staging/backoffice
+
   deploy-main:
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
@@ -46,7 +75,7 @@ jobs:
       - name: Build App
         run: |
           npm ci
-          npm run build
+          npm run build:prod
 
       - name: Deploy to server (production)
         uses: appleboy/ssh-action@v1.0.3

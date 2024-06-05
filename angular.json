@@ -46,6 +46,20 @@
               ],
               "outputHashing": "all"
             },
+            "staging": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.staging.ts"
+                }
+              ]
+            },
             "development": {
               "buildOptimizer": false,
               "optimization": false,
@@ -80,14 +94,17 @@
         "serve": {
           "builder": "@ngx-env/builder:dev-server",
           "configurations": {
-            "local": {
-              "browserTarget": "insight-backoffice:build:local"
-            },
             "production": {
               "browserTarget": "insight-backoffice:build:production"
             },
+            "staging": {
+              "browserTarget": "insight-backoffice:build:staging"
+            },
             "development": {
               "browserTarget": "insight-backoffice:build:development"
+            },
+            "local": {
+              "browserTarget": "insight-backoffice:build:local"
             }
           },
           "defaultConfiguration": "development"
