@@ -21,10 +21,10 @@ const defaultSnackbarConfig: ISnackbarConfig = {
 
 @Injectable()
 export class SnackbarService {
+  private successMessage = "Successfully completed";
   private successTemplate?: ISnackbarTempalte;
+  private errorMessage = "An error occurred";
   private errorTemplate?: ISnackbarTempalte;
-  successMessage = "Successfully completed";
-  errorMessage = "An error occurred";
 
   constructor(private snackBar: MatSnackBar) {}
 
@@ -39,7 +39,6 @@ export class SnackbarService {
   }
 
   error(props?: ISnackbarActionProps) {
-    console.dir(props?.error);
     let announcement = "";
     if (typeof props?.error === "string") announcement = props?.error;
     else if (props?.error instanceof ApolloError) {
@@ -55,7 +54,6 @@ export class SnackbarService {
       else announcement = this.errorMessage;
     } else if (props?.message) announcement = props.message;
     else announcement = this.errorMessage;
-    console.log(announcement);
     this.open({ template: this.errorTemplate, message: announcement });
     props?.onSettled?.();
   }

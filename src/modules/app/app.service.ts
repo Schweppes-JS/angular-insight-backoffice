@@ -31,8 +31,8 @@ export class AppService {
         .getMe()
         .pipe(
           take(1),
-          delay(500),
-          catchError((error: ApolloError) => of(error).pipe(delay(500)))
+          delay(400),
+          catchError((error: ApolloError) => of(error).pipe(delay(400)))
         )
         .subscribe({
           next: () => {

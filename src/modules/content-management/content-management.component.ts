@@ -29,9 +29,10 @@ export class ContentManagementComponent implements OnInit, OnDestroy {
     const publicPageSubcription = this.publicPageService
       .watchAllPublicPages()
       .pipe(
+        delay(400),
         catchError(() =>
           of(null).pipe(
-            delay(500),
+            delay(400),
             tap(() => {
               this.isLoaded = true;
               this.hasError = true;
