@@ -1,10 +1,11 @@
 import { FormBuilder, Validators } from "@angular/forms";
+import { Component, OnDestroy } from "@angular/core";
 import { ApolloError } from "@apollo/client/core";
-import { Component } from "@angular/core";
 import { Router } from "@angular/router";
+import { Subscription } from "rxjs";
 
-import { LoginService } from "./login.service";
 import { UserService } from "../user/user.service";
+import { LoginService } from "./login.service";
 
 @Component({
   selector: "app-login",
@@ -12,13 +13,14 @@ import { UserService } from "../user/user.service";
   styleUrls: ["./login.component.scss"],
   providers: [LoginService, UserService],
 })
-export class LoginComponent {
+export class LoginComponent implements OnDestroy {
   constructor(
     private readonly userService: UserService,
     private readonly loginService: LoginService,
     private readonly fb: FormBuilder,
     private readonly router: Router
   ) {}
+  private subscriptions: Subscription[] = [];
   isSubmitted = false;
   isLoading = false;
   loginError = "";
@@ -40,19 +42,21 @@ export class LoginComponent {
       this.isLoading = true;
       const formValue = this.loginForm.value;
       if (formValue.email && formValue.password) {
-        this.loginService.getToken({ email: formValue.email, password: formValue.password }).subscribe({
+        const tokenSubscription = this.loginService.getToken({ email: formValue.email, password: formValue.password }).subscribe({
           next: (response) => {
             response.data && this.loginService.setToken(response.data.login.token);
-            this.userService.getMe().subscribe({
+            const getMeSubscription = this.userService.getMe().subscribe({
               next: () => {
                 this.isLoading = false;
                 this.router.navigate(["/"], { replaceUrl: true });
               },
               error: (error: ApolloError) => this.onError(error.message),
             });
+            this.subscriptions.push(getMeSubscription);
           },
           error: (error: ApolloError) => this.onError(error.message),
         });
+        this.subscriptions.push(tokenSubscription);
       } else this.onError("Please fill all fields");
     }
   }
@@ -66,5 +70,9 @@ export class LoginComponent {
   }
   get password() {
     return this.loginForm.get("password");
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.forEach((subscription) => subscription.unsubscribe());
   }
 }

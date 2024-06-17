@@ -1,0 +1,47 @@
+<app-modal
+  successMessage="{{ name?.value }} page successfuly created"
+  openerIconTooltip="Create new page"
+  [onConfirm]="createPage.bind(this)"
+  [onClose]="reset.bind(this)"
+  [onOpen]="onOpen.bind(this)"
+  confirmButtonColor="accent"
+  openerIconColor="accent"
+  contentTitle="New page"
+  confirmButton="Create"
+  [iconText]="iconText"
+  cancelButton="Cencel"
+  [asyncClose]="true"
+  openerIcon="add"
+  width="400px"
+>
+  <div content>
+    <h2>New Page</h2>
+    <form class="create-public-page-modal__container" [formGroup]="createPublicPageForm" content>
+      <mat-form-field appearance="outline">
+        <mat-label>Route</mat-label>
+        <input matInput required placeholder="/about" formControlName="route" />
+        <mat-error *ngIf="route?.errors?.['required']">Route is required</mat-error>
+        <mat-error *ngIf="route?.errors?.['pattern']"
+          >Invalid route
+          <mat-icon
+            class="create-public-page-modal__icon"
+            matTooltip="Page route must start with a slash '/' followed by letters, numbers, or hyphens"
+          >
+            info_outline
+          </mat-icon>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Name</mat-label>
+        <input matInput required placeholder="About Me" formControlName="name" />
+        <mat-error *ngIf="name?.errors?.['required']">Name is required</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Info Sections</mat-label>
+        <mat-select formControlName="infoSectionIds" multiple>
+          <mat-option *ngFor="let infoSection of infoSections" [value]="infoSection.id">{{ infoSection.name }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </form>
+  </div>
+</app-modal>

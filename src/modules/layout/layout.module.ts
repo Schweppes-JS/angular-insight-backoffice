@@ -7,7 +7,7 @@ import { SidebarModule } from "../sidebar/sidebar.module";
 import { HeaderModule } from "../header/header.module";
 
 @NgModule({
-  declarations: [LayoutComponent],
   imports: [HeaderModule, SidebarModule, RouterModule],
+  declarations: [LayoutComponent],
 })
 export class LayoutModule {}

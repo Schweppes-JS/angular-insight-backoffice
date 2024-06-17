@@ -5,32 +5,22 @@
   mat-stretch-tabs="false"
   mat-align-tabs="start"
   color="accent"
+  #tabGroup
 >
   <mat-tab *ngFor="let page of publicPages" [label]="page.name | titlecase">
     <section class="content-management__container">
       <div class="content-management__headline">
         <h3 class="content-management__heading">
           <span class="content-management__title">{{ page.name | titlecase }}</span>
-          <span class="content-management__subtitle">({{ page.route ? page.route : "/" }})</span>
+          <span class="content-management__subtitle">({{ page.route }})</span>
         </h3>
-        <app-modal
-          contentTitle="Are you sure you want to delete {{ page.name | titlecase }} page?"
-          openerIconTooltip="Delete {{ page.name | titlecase }} page"
-          [onConfirm]="deletePage(page.id)"
-          confirmButtonColor="warn"
-          confirmButton="Delete"
-          openerIconColor="warn"
-          cancelButton="Cencel"
-          openerIcon="delete"
-        />
+        <app-delete-public-page-modal [pageInfo]="page" />
       </div>
     </section>
   </mat-tab>
   <mat-tab disabled>
     <ng-template mat-tab-label>
-      <button mat-icon-button color="accent">
-        <mat-icon>add</mat-icon>
-      </button>
+      <app-create-public-page-modal />
     </ng-template>
   </mat-tab>
 </mat-tab-group>
@@ -39,7 +29,7 @@
 
 <div class="content-management__message" *ngIf="isLoaded && publicPages.length === 0 && !hasError">
   <h2>There are no public pages</h2>
-  <button mat-stroked-button>Create<mat-icon>add</mat-icon></button>
+  <app-create-public-page-modal iconText="Create" />
 </div>
 
 <div class="content-management__container content-management__message" *ngIf="hasError">

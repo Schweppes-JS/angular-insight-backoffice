@@ -1,0 +1,8 @@
+<ng-template #errorTemplate let-data>
+  <h3 class="snackbar__error">Oops, something went wrong</h3>
+  <mat-error class="snackbar__text" [innerText]="data.message" />
+</ng-template>
+
+<ng-template #successTemplate let-data>
+  <h3 class="snackbar__success" [innerText]="data.message"></h3>
+</ng-template>

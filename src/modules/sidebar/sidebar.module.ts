@@ -8,8 +8,8 @@ import { SidebarService } from "./sidebar.service";
 
 @NgModule({
   imports: [MaterialModule, RouterModule],
-  providers: [SidebarService],
   declarations: [SidebarComponent],
+  providers: [SidebarService],
   exports: [SidebarComponent],
 })
 export class SidebarModule {}

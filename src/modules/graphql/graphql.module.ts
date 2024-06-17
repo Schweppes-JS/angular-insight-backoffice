@@ -26,7 +26,7 @@ import { environment } from "src/environments/environment";
           }
         });
         return {
-          link: ApolloLink.from([errorLink, httpLink.create({ uri: environment.GRAPHQL_URL || "http://localhost:3000/graphql" })]),
+          link: ApolloLink.from([errorLink, httpLink.create({ uri: environment.GRAPHQL_URL || "http://localhost:48667/graphql" })]),
           cache: new InMemoryCache(),
         };
       },

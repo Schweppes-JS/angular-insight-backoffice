@@ -39,7 +39,7 @@ export type CreateInfoSectionInput = {
 };
 
 export type CreatePublicPageInput = {
-  infoSectionIds?: InputMaybe<Array<Scalars['ID']['input']>>;
+  infoSectionIds: Array<Scalars['ID']['input']>;
   name: Scalars['String']['input'];
   route: Scalars['String']['input'];
 };

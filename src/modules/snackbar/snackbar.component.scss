@@ -1,0 +1,29 @@
+@import "global.scss";
+
+::ng-deep {
+  .snackbar__wrapper {
+    .mdc-snackbar__surface {
+      background-color: map-get($my-gray, 800) !important;
+      max-width: 300px !important;
+      min-width: 300px !important;
+      padding: 0;
+    }
+
+    .mdc-snackbar__label {
+      padding: 5px 10px;
+    }
+  }
+}
+
+.snackbar {
+  &__error {
+    color: map-get($my-warn, 300);
+    margin-bottom: 5px;
+  }
+
+  &__success {
+    color: map-get($my-accent, 200);
+    text-align: center;
+    margin-bottom: 0;
+  }
+}

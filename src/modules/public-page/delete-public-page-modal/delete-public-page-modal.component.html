@@ -1,0 +1,13 @@
+<app-modal
+  contentTitle="Are you sure you want to delete {{ pageInfo.name | titlecase }} page?"
+  successMessage="{{ pageInfo.name | titlecase }} page successfuly deleted"
+  openerIconTooltip="Delete {{ pageInfo.name | titlecase }} page"
+  [onConfirm]="deletePage(pageInfo.id)"
+  confirmButtonColor="warn"
+  confirmButton="Delete"
+  openerIconColor="warn"
+  cancelButton="Cencel"
+  [asyncClose]="true"
+  openerIcon="delete"
+  *ngIf="pageInfo"
+/>

@@ -1,0 +1,17 @@
+::ng-deep {
+  .mdc-dialog__content {
+    padding-bottom: 0 !important;
+  }
+}
+
+.create-public-page-modal {
+  &__container {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  &__icon {
+    margin-bottom: -2px;
+  }
+}

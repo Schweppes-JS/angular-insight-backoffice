@@ -7,6 +7,7 @@ import { TestBed } from "@angular/core/testing";
 import { ApolloModule } from "apollo-angular";
 
 import { NotFoundModule } from "../not-found/not-found.module";
+import { SnackbarModule } from "../snackbar/snackbar.module";
 import { MaterialModule } from "../material/material.module";
 import { SidebarModule } from "../sidebar/sidebar.module";
 import { GraphQLModule } from "../graphql/graphql.module";
@@ -26,6 +27,7 @@ describe("AppComponent", () => {
         RouterTestingModule,
         NotFoundModule,
         MaterialModule,
+        SnackbarModule,
         BrowserModule,
         SidebarModule,
         GraphQLModule,

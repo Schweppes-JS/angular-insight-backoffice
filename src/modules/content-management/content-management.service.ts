@@ -1,41 +1,15 @@
-import { Apollo, gql } from "apollo-angular";
+import { MatTabGroup } from "@angular/material/tabs";
 import { Injectable } from "@angular/core";
-
-import { IDeletePublicPagesMutationResponse, IPublicPagesQueryResponse } from "./content-management.interface";
-
-const PUBLIC_PAGES_QUERY = gql`
-  query PublicPages {
-    publicPages {
-      id
-      name
-      infoSectionIds
-      name
-      route
-    }
-  }
-`;
-
-const DELETE_PUBLIC_PAGES_MUTATION = gql`
-  mutation DeletePublicPage($id: ID!) {
-    deletePublicPage(deletePublicPageInput: { id: $id }) {
-      id
-    }
-  }
-`;
 
 @Injectable()
 export class ContentManagementService {
-  constructor(private readonly apollo: Apollo) {}
+  tabGroup?: MatTabGroup;
 
-  getAllPublicPages() {
-    return this.apollo.query<IPublicPagesQueryResponse>({ query: PUBLIC_PAGES_QUERY });
+  setTabGroup(contentManagementTabGroup: MatTabGroup) {
+    this.tabGroup = contentManagementTabGroup;
   }
 
-  deletePublicPages(id: string) {
-    return this.apollo.mutate<IDeletePublicPagesMutationResponse>({
-      refetchQueries: [{ query: PUBLIC_PAGES_QUERY }],
-      mutation: DELETE_PUBLIC_PAGES_MUTATION,
-      variables: { id },
-    });
+  changeContentManagementTab(index: number) {
+    this.tabGroup && (this.tabGroup.selectedIndex = index);
   }
 }

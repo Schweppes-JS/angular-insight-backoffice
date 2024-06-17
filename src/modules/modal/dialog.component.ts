@@ -1,9 +1,9 @@
+import { Component, Inject, OnDestroy, TemplateRef } from "@angular/core";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
-import { Component, Inject, TemplateRef } from "@angular/core";
 import { CommonModule } from "@angular/common";
 
 import { MaterialModule } from "../material/material.module";
-import { Any } from "src/types/any";
+import { AnyType } from "src/types/any";
 
 @Component({
   imports: [MaterialModule, CommonModule],
@@ -12,9 +12,13 @@ import { Any } from "src/types/any";
   selector: "app-modal",
   standalone: true,
 })
-export class DialogComponent {
+export class DialogComponent implements OnDestroy {
   constructor(
     public dialogRef: MatDialogRef<DialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { modalContent: TemplateRef<Any>; modalActions: TemplateRef<Any> }
+    @Inject(MAT_DIALOG_DATA) public data: { modalContent: TemplateRef<AnyType>; modalActions: TemplateRef<AnyType>; onDestroy?: () => void }
   ) {}
+
+  ngOnDestroy(): void {
+    this.data.onDestroy?.();
+  }
 }
