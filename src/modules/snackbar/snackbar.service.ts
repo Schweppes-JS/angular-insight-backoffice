@@ -44,7 +44,7 @@ export class SnackbarService {
     else if (props?.error instanceof ApolloError) {
       if (props?.error?.message === "Bad Request Exception") {
         props.error.graphQLErrors.forEach((error) => {
-          if (error.extensions["originalError"]) {
+          if (error.extensions?.["originalError"]) {
             announcement =
               announcement +
               (error.extensions["originalError"] as IOriginalError).message.map((validationError) => `- ${validationError}`).join("\n\n");

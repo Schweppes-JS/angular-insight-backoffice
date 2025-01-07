@@ -1,4 +1,5 @@
-@import "global.scss";
+@use "sass:map";
+@use "global.scss";
 
 :host {
   flex: 1;
@@ -15,11 +16,11 @@
 
   &__navigation-item {
     &--active {
-      background-color: rgba(map-get($my-accent, 200), 15%);
+      background-color: rgba(map.get(global.$my-accent, 200), 15%);
 
       ::ng-deep {
         span {
-          color: map-get($my-accent, 200);
+          color: map.get(global.$my-accent, 200);
         }
       }
     }

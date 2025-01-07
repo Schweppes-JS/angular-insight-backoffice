@@ -3,7 +3,12 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 import { ISnackbarTempalte } from "./snackbar.interface";
 import { SnackbarService } from "./snackbar.service";
 
-@Component({ templateUrl: "./snackbar.component.html", styleUrl: "./snackbar.component.scss", selector: "app-snackbar" })
+@Component({
+  templateUrl: "./snackbar.component.html",
+  styleUrl: "./snackbar.component.scss",
+  selector: "app-snackbar",
+  standalone: false,
+})
 export class SnackbarComponent implements OnInit {
   @ViewChild("errorTemplate", { static: true }) errorTemplate?: ISnackbarTempalte;
   @ViewChild("successTemplate", { static: true }) successTemplate?: ISnackbarTempalte;

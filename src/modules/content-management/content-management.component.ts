@@ -10,6 +10,7 @@ import { PublicPage } from "../graphql/graphql.inteface";
   templateUrl: "./content-management.component.html",
   styleUrls: ["./content-management.component.scss"],
   selector: "app-content-management",
+  standalone: false,
 })
 export class ContentManagementComponent implements OnInit, OnDestroy {
   @ViewChild("tabGroup", { static: false }) set contentTabGroup(tabGroup: MatTabGroup) {

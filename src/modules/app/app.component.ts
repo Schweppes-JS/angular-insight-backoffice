@@ -11,6 +11,7 @@ import { LoginGuardService } from "../login/login-guard.service";
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.scss"],
   providers: [UserService],
+  standalone: false,
 })
 export class AppComponent implements OnInit {
   constructor(

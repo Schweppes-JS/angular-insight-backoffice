@@ -95,16 +95,16 @@
           "builder": "@ngx-env/builder:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "insight-backoffice:build:production"
+              "buildTarget": "insight-backoffice:build:production"
             },
             "staging": {
-              "browserTarget": "insight-backoffice:build:staging"
+              "buildTarget": "insight-backoffice:build:staging"
             },
             "development": {
-              "browserTarget": "insight-backoffice:build:development"
+              "buildTarget": "insight-backoffice:build:development"
             },
             "local": {
-              "browserTarget": "insight-backoffice:build:local"
+              "buildTarget": "insight-backoffice:build:local"
             }
           },
           "defaultConfiguration": "development"
@@ -112,7 +112,7 @@
         "extract-i18n": {
           "builder": "@ngx-env/builder:extract-i18n",
           "options": {
-            "browserTarget": "insight-backoffice:build"
+            "buildTarget": "insight-backoffice:build"
           }
         },
         "test": {
@@ -139,6 +139,7 @@
     }
   },
   "cli": {
-    "schematicCollections": ["@angular-eslint/schematics"]
+    "schematicCollections": ["@angular-eslint/schematics"],
+    "analytics": false
   }
 }

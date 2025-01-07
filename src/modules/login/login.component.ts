@@ -12,6 +12,7 @@ import { LoginService } from "./login.service";
   templateUrl: "./login.component.html",
   styleUrls: ["./login.component.scss"],
   providers: [LoginService, UserService],
+  standalone: false,
 })
 export class LoginComponent implements OnDestroy {
   constructor(

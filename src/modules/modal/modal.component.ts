@@ -12,6 +12,7 @@ import { DialogComponent } from "./dialog.component";
   templateUrl: "./modal.component.html",
   styleUrls: ["./modal.component.scss"],
   selector: "app-modal",
+  standalone: false,
 })
 export class ModalComponent {
   dialogRef: MatDialogRef<DialogComponent> | undefined;

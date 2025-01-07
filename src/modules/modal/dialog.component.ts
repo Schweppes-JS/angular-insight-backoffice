@@ -10,7 +10,6 @@ import { AnyType } from "src/types/any";
   styleUrls: ["./dialog.component.scss"],
   templateUrl: "./dialog.component.html",
   selector: "app-modal",
-  standalone: true,
 })
 export class DialogComponent implements OnDestroy {
   constructor(

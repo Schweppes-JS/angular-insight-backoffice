@@ -1,9 +1,10 @@
-@import "global.scss";
+@use "sass:map";
+@use "global.scss";
 
 ::ng-deep {
   .snackbar__wrapper {
     .mdc-snackbar__surface {
-      background-color: map-get($my-gray, 800) !important;
+      background-color: map.get(global.$my-gray, 800) !important;
       max-width: 300px !important;
       min-width: 300px !important;
       padding: 0;
@@ -17,12 +18,12 @@
 
 .snackbar {
   &__error {
-    color: map-get($my-warn, 300);
+    color: map.get(global.$my-warn, 300);
     margin-bottom: 5px;
   }
 
   &__success {
-    color: map-get($my-accent, 200);
+    color: map.get(global.$my-accent, 200);
     text-align: center;
     margin-bottom: 0;
   }

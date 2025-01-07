@@ -6,6 +6,7 @@ import { SidebarService } from "./sidebar.service";
   selector: "app-sidebar",
   templateUrl: "./sidebar.component.html",
   styleUrls: ["./sidebar.component.scss"],
+  standalone: false,
 })
 export class SidebarComponent implements OnInit {
   constructor(public sidebarService: SidebarService) {}

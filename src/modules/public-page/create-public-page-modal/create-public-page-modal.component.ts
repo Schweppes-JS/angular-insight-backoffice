@@ -16,6 +16,7 @@ const createPublicPageFormDefaultValues = { route: "", infoSectionIds: new Array
   templateUrl: "./create-public-page-modal.component.html",
   styleUrl: "./create-public-page-modal.component.scss",
   selector: "app-create-public-page-modal",
+  standalone: false,
 })
 export class CreatePublicPageModalComponent implements OnDestroy {
   constructor(

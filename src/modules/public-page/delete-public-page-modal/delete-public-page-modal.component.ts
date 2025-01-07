@@ -6,7 +6,11 @@ import { PublicPage } from "src/modules/graphql/graphql.inteface";
 
 import { PublicPageService } from "../public-page.service";
 
-@Component({ templateUrl: "delete-public-page-modal.component.html", selector: "app-delete-public-page-modal" })
+@Component({
+  templateUrl: "delete-public-page-modal.component.html",
+  selector: "app-delete-public-page-modal",
+  standalone: false,
+})
 export class DeletePublicPageModalComponent {
   @Input({ required: true }) pageInfo?: PublicPage;
 
