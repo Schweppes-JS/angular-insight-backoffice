@@ -1,12 +1,16 @@
+import { MatSidenavModule } from "@angular/material/sidenav";
+import { MatListModule } from "@angular/material/list";
 import { Component, OnInit } from "@angular/core";
+import { RouterModule } from "@angular/router";
+import { CommonModule } from "@angular/common";
 
 import { SidebarService } from "./sidebar.service";
 
 @Component({
-  selector: "app-sidebar",
+  imports: [CommonModule, RouterModule, MatListModule, MatSidenavModule],
   templateUrl: "./sidebar.component.html",
   styleUrls: ["./sidebar.component.scss"],
-  standalone: false,
+  selector: "app-sidebar",
 })
 export class SidebarComponent implements OnInit {
   constructor(public sidebarService: SidebarService) {}

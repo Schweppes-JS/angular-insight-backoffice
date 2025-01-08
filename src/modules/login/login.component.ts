@@ -1,6 +1,13 @@
-import { FormBuilder, Validators } from "@angular/forms";
+import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatButtonModule } from "@angular/material/button";
+import { MatInputModule } from "@angular/material/input";
+import { MatIconModule } from "@angular/material/icon";
+import { MatCardModule } from "@angular/material/card";
 import { Component, OnDestroy } from "@angular/core";
 import { ApolloError } from "@apollo/client/core";
+import { CommonModule } from "@angular/common";
 import { Router } from "@angular/router";
 import { Subscription } from "rxjs";
 
@@ -8,11 +15,20 @@ import { UserService } from "../user/user.service";
 import { LoginService } from "./login.service";
 
 @Component({
-  selector: "app-login",
+  imports: [
+    MatProgressSpinnerModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatButtonModule,
+    MatInputModule,
+    MatIconModule,
+    MatCardModule,
+    CommonModule,
+    FormsModule,
+  ],
   templateUrl: "./login.component.html",
   styleUrls: ["./login.component.scss"],
-  providers: [LoginService, UserService],
-  standalone: false,
+  selector: "app-login",
 })
 export class LoginComponent implements OnDestroy {
   constructor(

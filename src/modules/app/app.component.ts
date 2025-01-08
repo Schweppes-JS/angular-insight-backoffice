@@ -1,17 +1,19 @@
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { Component, OnInit } from "@angular/core";
+import { RouterOutlet } from "@angular/router";
+import { CommonModule } from "@angular/common";
 
-import { UserService } from "../user/user.service";
+import { SnackbarComponent } from "../snackbar/snackbar.component";
 
-import { AppService } from "./app.service";
-import { AuthGuardService } from "../auth/auth-guard.service";
 import { LoginGuardService } from "../login/login-guard.service";
+import { AuthGuardService } from "../auth/auth-guard.service";
+import { AppService } from "./app.service";
 
 @Component({
-  selector: "app-root",
+  imports: [SnackbarComponent, CommonModule, RouterOutlet, MatProgressSpinnerModule],
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.scss"],
-  providers: [UserService],
-  standalone: false,
+  selector: "app-root",
 })
 export class AppComponent implements OnInit {
   constructor(

@@ -1,13 +1,17 @@
+import { MatToolbarModule } from "@angular/material/toolbar";
+import { MatButtonModule } from "@angular/material/button";
+import { MatIconModule } from "@angular/material/icon";
+import { CommonModule } from "@angular/common";
 import { Component } from "@angular/core";
 
 import { SidebarService } from "../sidebar/sidebar.service";
 import { AuthService } from "../auth/auth.service";
 
 @Component({
-  selector: "app-header",
+  imports: [CommonModule, MatIconModule, MatToolbarModule, MatButtonModule],
   templateUrl: "./header.component.html",
   styleUrls: ["./header.component.scss"],
-  standalone: false,
+  selector: "app-header",
 })
 export class HeaderComponent {
   constructor(

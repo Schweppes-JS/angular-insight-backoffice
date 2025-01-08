@@ -9,7 +9,7 @@ import { AuthGuardService } from "../auth/auth-guard.service";
 import { LoginGuardService } from "../login/login-guard.service";
 import { AUTH_TOKEN_STORAGE_KEY } from "../../constants/localStorageKeys";
 
-@Injectable()
+@Injectable({ providedIn: "root" })
 export class AppService {
   constructor(
     private readonly authService: AuthService,

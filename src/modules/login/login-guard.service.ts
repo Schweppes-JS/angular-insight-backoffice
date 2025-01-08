@@ -5,7 +5,7 @@ import { AUTH_TOKEN_STORAGE_KEY } from "../../constants/localStorageKeys";
 import { UserService } from "../user/user.service";
 import { AppService } from "../app/app.service";
 
-@Injectable()
+@Injectable({ providedIn: "root" })
 export class LoginGuardService implements CanActivate {
   constructor(
     protected router: Router,

@@ -19,7 +19,7 @@ const defaultSnackbarConfig: ISnackbarConfig = {
   duration: 5000,
 };
 
-@Injectable()
+@Injectable({ providedIn: "root" })
 export class SnackbarService {
   private successMessage = "Successfully completed";
   private successTemplate?: ISnackbarTempalte;

@@ -19,7 +19,7 @@ const LOGIN_MUTATION = gql`
   }
 `;
 
-@Injectable()
+@Injectable({ providedIn: "root" })
 export class LoginService {
   constructor(private apollo: Apollo) {}
 

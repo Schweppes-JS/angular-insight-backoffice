@@ -1,15 +1,15 @@
 import { Component, Inject, OnDestroy, TemplateRef } from "@angular/core";
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material/dialog";
+import { MatDialogModule } from "@angular/material/dialog";
 import { CommonModule } from "@angular/common";
 
-import { MaterialModule } from "../material/material.module";
 import { AnyType } from "src/types/any";
 
 @Component({
-  imports: [MaterialModule, CommonModule],
+  imports: [CommonModule, MatDialogModule],
   styleUrls: ["./dialog.component.scss"],
   templateUrl: "./dialog.component.html",
-  selector: "app-modal",
+  selector: "app-dialog",
 })
 export class DialogComponent implements OnDestroy {
   constructor(

@@ -1,11 +1,17 @@
-import { FormBuilder, Validators } from "@angular/forms";
+import { FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
+import { MatFormFieldModule } from "@angular/material/form-field";
 import { Component, Input, OnDestroy } from "@angular/core";
+import { MatSelectModule } from "@angular/material/select";
+import { MatIconModule } from "@angular/material/icon";
 import { Subscription, switchMap, tap } from "rxjs";
 import { ApolloError } from "@apollo/client/core";
+import { CommonModule } from "@angular/common";
 
 import { ContentManagementService } from "src/modules/content-management/content-management.service";
 import { CreatePublicPageInput, InfoSection } from "src/modules/graphql/graphql.inteface";
 import { InfoSectionService } from "src/modules/info-section/info-section.service";
+import { ModalComponent } from "src/modules/modal/modal.component";
+import { MatInputModule } from "@angular/material/input";
 import { pageRouteRegExp } from "src/constants/regexp";
 
 import { PublicPageService } from "../public-page.service";
@@ -13,10 +19,10 @@ import { PublicPageService } from "../public-page.service";
 const createPublicPageFormDefaultValues = { route: "", infoSectionIds: new Array<string>(), name: "" };
 
 @Component({
+  imports: [ModalComponent, CommonModule, MatInputModule, ReactiveFormsModule, MatFormFieldModule, MatIconModule, MatSelectModule],
   templateUrl: "./create-public-page-modal.component.html",
   styleUrl: "./create-public-page-modal.component.scss",
   selector: "app-create-public-page-modal",
-  standalone: false,
 })
 export class CreatePublicPageModalComponent implements OnDestroy {
   constructor(

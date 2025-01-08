@@ -1,8 +1,6 @@
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { MaterialModule } from "../material/material.module";
-
 import { SnackbarComponent } from "./snackbar.component";
 import { SnackbarService } from "./snackbar.service";
 
@@ -17,11 +15,7 @@ describe("SnackbarComponent", () => {
   let component: SnackbarComponent;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({
-      imports: [MaterialModule, BrowserAnimationsModule],
-      declarations: [SnackbarComponent],
-      providers: [SnackbarService],
-    });
+    TestBed.configureTestingModule({ imports: [BrowserAnimationsModule] });
     fixture = TestBed.createComponent(SnackbarComponent);
     snackbarService = TestBed.inject(SnackbarService);
     component = fixture.componentInstance;
@@ -34,6 +28,7 @@ describe("SnackbarComponent", () => {
     snackbarService.error();
     fixture.detectChanges();
     const errorElement = fixture.nativeElement.ownerDocument.querySelector('[data-test-id="snackbar-error"]');
+    expect(errorElement).not.toBeNull();
     expect(errorElement.textContent).toBe(DEFAULT_ERROR_MESSAGE);
   });
 
@@ -41,21 +36,24 @@ describe("SnackbarComponent", () => {
     snackbarService.error({ message: CUSTOM_ERROR_MESSAGE });
     fixture.detectChanges();
     const errorElement = fixture.nativeElement.ownerDocument.querySelector('[data-test-id="snackbar-error"]');
+    expect(errorElement).not.toBeNull();
     expect(errorElement.textContent).toBe(CUSTOM_ERROR_MESSAGE);
   });
 
   it("should render default snackbar success message", () => {
     snackbarService.success();
     fixture.detectChanges();
-    const errorElement = fixture.nativeElement.ownerDocument.querySelector('[data-test-id="snackbar-success"]');
-    expect(errorElement.textContent).toBe(DEFAULT_SUCCESS_MESSAGE);
+    const successElement = fixture.nativeElement.ownerDocument.querySelector('[data-test-id="snackbar-success"]');
+    expect(successElement).not.toBeNull();
+    expect(successElement.textContent).toBe(DEFAULT_SUCCESS_MESSAGE);
   });
 
   it("should render custom snackbar success message", () => {
     snackbarService.success({ message: CUSTOM_SUCCESS_MESSAGE });
     fixture.detectChanges();
-    const errorElement = fixture.nativeElement.ownerDocument.querySelector('[data-test-id="snackbar-success"]');
-    expect(errorElement.textContent).toBe(CUSTOM_SUCCESS_MESSAGE);
+    const successElement = fixture.nativeElement.ownerDocument.querySelector('[data-test-id="snackbar-success"]');
+    expect(successElement).not.toBeNull();
+    expect(successElement.textContent).toBe(CUSTOM_SUCCESS_MESSAGE);
   });
 });
 
@@ -63,7 +61,7 @@ describe("SnackbarService", () => {
   let snackbarService: SnackbarService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({ imports: [MaterialModule, BrowserAnimationsModule], providers: [SnackbarService] });
+    TestBed.configureTestingModule({ imports: [BrowserAnimationsModule] });
     snackbarService = TestBed.inject(SnackbarService);
   });
 

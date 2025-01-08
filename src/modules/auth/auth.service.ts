@@ -9,6 +9,7 @@ export class AuthService {
     private readonly loginService: LoginService,
     protected router: Router
   ) {}
+
   logout() {
     this.loginService.removeToken();
     this.router.navigate(["/login"], { replaceUrl: true });

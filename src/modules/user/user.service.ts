@@ -17,7 +17,7 @@ const ME_QUERY = gql`
   }
 `;
 
-@Injectable()
+@Injectable({ providedIn: "root" })
 export class UserService {
   constructor(
     private apollo: Apollo,

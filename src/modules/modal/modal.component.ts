@@ -1,7 +1,12 @@
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { MatDialog, MatDialogRef } from "@angular/material/dialog";
 import { Component, Input, TemplateRef } from "@angular/core";
+import { MatTooltipModule } from "@angular/material/tooltip";
+import { MatButtonModule } from "@angular/material/button";
+import { MatIconModule } from "@angular/material/icon";
 import { ApolloError } from "@apollo/client/errors";
 import { Observable, Subscription } from "rxjs";
+import { CommonModule } from "@angular/common";
 
 import { SnackbarService } from "../snackbar/snackbar.service";
 import { AnyType } from "src/types/any";
@@ -9,10 +14,10 @@ import { AnyType } from "src/types/any";
 import { DialogComponent } from "./dialog.component";
 
 @Component({
+  imports: [CommonModule, MatTooltipModule, MatProgressSpinnerModule, MatIconModule, MatButtonModule],
   templateUrl: "./modal.component.html",
   styleUrls: ["./modal.component.scss"],
   selector: "app-modal",
-  standalone: false,
 })
 export class ModalComponent {
   dialogRef: MatDialogRef<DialogComponent> | undefined;

@@ -1,7 +1,7 @@
 import { MatTabGroup } from "@angular/material/tabs";
 import { Injectable } from "@angular/core";
 
-@Injectable()
+@Injectable({ providedIn: "root" })
 export class ContentManagementService {
   tabGroup?: MatTabGroup;
 

@@ -38,7 +38,7 @@ const DELETE_PUBLIC_PAGE_MUTATION = gql`
   }
 `;
 
-@Injectable()
+@Injectable({ providedIn: "root" })
 export class PublicPageService {
   constructor(private readonly apollo: Apollo) {}
 

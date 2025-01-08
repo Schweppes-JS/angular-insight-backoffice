@@ -14,7 +14,7 @@ const INFO_SECTIONS_QUERY = gql`
   }
 `;
 
-@Injectable()
+@Injectable({ providedIn: "root" })
 export class InfoSectionService {
   constructor(private readonly apollo: Apollo) {}
 
